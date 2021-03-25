@@ -1,0 +1,6 @@
+# ninja log v5
+1	386	6382378875280998	build.ninja	46df2e1c96c83132
+0	447	6382376853495519	src/release.exe	5846c60e9585930b
+4	465	6382209628835715	src/CMakeFiles/release.dir/main.c.obj	43189ddf9dac0d2b
+3	455	6382376855973986	src/module_a/CMakeFiles/module_a.dir/module_a.c.obj	3d9960c453627c6e
+456	496	6382376856382895	src/module_a/module_a.lib	7895648aebefea71

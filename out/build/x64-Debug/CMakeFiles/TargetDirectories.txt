@@ -1,0 +1,8 @@
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/CMakeFiles/release.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/CMakeFiles/edit_cache.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/CMakeFiles/rebuild_cache.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/module_a/CMakeFiles/rebuild_cache.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/module_a/CMakeFiles/module_a.dir
+C:/Users/Warcaith/source/repos/thesis_unity_framework/out/build/x64-Debug/src/module_a/CMakeFiles/edit_cache.dir

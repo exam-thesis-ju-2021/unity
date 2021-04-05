@@ -1,0 +1,18 @@
+---
+:source:
+  :path: test
+  :file: test_shape_container.c
+:successes: []
+:failures:
+- :test: test_shape_container_calc_rect_is_square
+  :line: 6
+  :message: Function digital_write.  Called more times than expected.
+  :unity_test_time: 0
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 0
+  :failed: 1
+  :ignored: 0
+:stdout: []
+:time: 0.10353699998813681

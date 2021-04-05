@@ -75,7 +75,7 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_hardware.c");
-  run_test(test_hardware_digital, "test_hardware_digital", 14);
+  run_test(test_hardware_digital, "test_hardware_digital", 19);
 
   return UnityEnd();
 }

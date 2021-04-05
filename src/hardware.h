@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "peripheral.h"
 
 typedef enum {
 	LOW = 0,
@@ -18,7 +19,7 @@ typedef enum {
 typedef struct {
 	PinState* states;
 	PinMode* modes;
-	uint16_t* analog_values;
+	Peripheral* peripherals;
 } Hardware;
 
 static Hardware hardware;
@@ -32,5 +33,7 @@ PinState digital_read(uint8_t gpio);
 
 void analog_write(uint8_t gpio, uint16_t value);
 uint16_t analog_read(uint8_t gpio);
+
+void set_peripheral(uint8_t gpio, Peripheral peripheral);
 
 #endif

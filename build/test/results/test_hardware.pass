@@ -4,7 +4,7 @@
   :file: test_hardware.c
 :successes:
 - :test: test_hardware_digital
-  :line: 14
+  :line: 19
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -15,4 +15,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.513871700008167
+:time: 0.029204899998148903

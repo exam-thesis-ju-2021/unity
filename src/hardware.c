@@ -6,12 +6,11 @@ void hw_init()
 	hw_reset();
 	hardware.states = malloc(sizeof(PinState) * 8);
 	hardware.modes = malloc(sizeof(PinMode) * 8);
-	hardware.analog_values = malloc(sizeof(uint16_t) * 8);
+	hardware.peripherals = malloc(sizeof(Peripheral) * 8);
 
 	for (int i = 0; i < 8; i++) {
 		hardware.states[i] = LOW;
 		hardware.modes[i] = INPUT;
-		hardware.analog_values[i] = 0;
 	}
 }
 
@@ -19,6 +18,7 @@ void hw_reset()
 {
 	free(hardware.states);
 	free(hardware.modes);
+	free(hardware.peripherals);
 }
 
 void pin_mode(uint8_t gpio, PinMode mode)
@@ -38,11 +38,17 @@ PinState digital_read(uint8_t gpio)
 
 void analog_write(uint8_t gpio, uint16_t value)
 {
-	hardware.analog_values[gpio] = value;
+	Peripheral* peripheral = &hardware.peripherals[gpio];
+	peripheral->write(peripheral, value);
 }
 
 uint16_t analog_read(uint8_t gpio) 
 {
-	return hardware.analog_values[gpio];
+	Peripheral* peripheral = &hardware.peripherals[gpio];
+	return peripheral->read(peripheral);
 }
 
+void set_peripheral(uint8_t gpio, Peripheral peripheral) 
+{
+	hardware.peripherals[gpio] = peripheral;
+}

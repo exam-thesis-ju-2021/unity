@@ -9,3 +9,5 @@ src/hardware.c:
 - TEST
 build/test/mocks/mock_hardware_class.c:
 - TEST
+src/peripheral.c:
+- TEST

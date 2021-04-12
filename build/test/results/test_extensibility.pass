@@ -1,0 +1,20 @@
+---
+:source:
+  :path: test
+  :file: test_extensibility.c
+:successes:
+- :test: test_extensibility
+  :line: 18
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 1
+  :failed: 0
+  :ignored: 0
+:stdout:
+- 'test_extensibility.c:28:test_extensibility:INFO: Executing customized assertion...'
+- 'test_extensibility.c:35:test_extensibility:INFO: assert ''ASSERT_PIN_STATE'' passed.'
+:time: 0.14904930000193417

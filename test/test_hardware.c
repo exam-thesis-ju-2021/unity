@@ -18,6 +18,7 @@ void tearDown()
 
 void test_hardware_digital(void)
 {
+
     uint8_t pin = 1;
     uint16_t ref = 500;
 

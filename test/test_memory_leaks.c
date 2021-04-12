@@ -10,7 +10,7 @@ void tearDown(void)
 
 }
 
-void test_fixtures(void)
+void test_memory_leaks(void)
 {
-
+	
 }

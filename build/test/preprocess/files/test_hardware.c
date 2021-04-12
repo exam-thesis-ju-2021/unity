@@ -35,6 +35,8 @@ void test_hardware_digital(void)
 
 {
 
+
+
     uint8_t pin = 1;
 
     uint16_t ref = 500;
@@ -49,7 +51,7 @@ void test_hardware_digital(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(26), UNITY_DISPLAY_STYLE_INT);
+   ), (UNITY_UINT)(27), UNITY_DISPLAY_STYLE_INT);
 
 }
 

@@ -1,2 +1,2 @@
-build/test/out/c/hardware.o: src/hardware.c src/hardware.h \
- src/peripheral.h
+build/test/out/c/hardware.o: src/library/hardware.c \
+ src/library/hardware.h src/library/peripheral.h

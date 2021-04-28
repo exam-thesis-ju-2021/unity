@@ -1,1 +1,2 @@
-build/test/out/c/peripheral.o: src/peripheral.c src/peripheral.h
+build/test/out/c/peripheral.o: src/library/peripheral.c \
+ src/library/peripheral.h

@@ -1,13 +1,25 @@
 ---
-build/test/mocks/mock_rectangle.c:
+src/library/module_a.c:
 - TEST
-src/shape_container.c:
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripherals.c:
 - TEST
-build/test/mocks/mock_hardware.c:
+- UNITY_INCLUDE_CONFIG_H
+src/library/hardware.c:
 - TEST
-src/hardware.c:
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripheral.c:
 - TEST
-build/test/mocks/mock_hardware_class.c:
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripherals/divide_by_half.c:
 - TEST
-src/peripheral.c:
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripherals/multiply_by_two.c:
 - TEST
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripherals/power_of_two.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+src/library/peripherals/square_root.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H

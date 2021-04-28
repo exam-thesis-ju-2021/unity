@@ -1,5 +1,0 @@
----
-- C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/ceedling-0.31.0/vendor/unity/src/unity.h
-- src/shape_container.h
-- build/test/mocks/mock_rectangle.h
-- build/test/mocks/mock_hardware.h

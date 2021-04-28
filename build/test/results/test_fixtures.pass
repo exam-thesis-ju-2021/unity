@@ -2,13 +2,21 @@
 :source:
   :path: test
   :file: test_fixtures.c
-:successes: []
+:successes:
+- :test: test_fixtures
+  :line: 13
+  :message: ''
+  :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 1
+  :passed: 1
   :failed: 0
   :ignored: 0
-:stdout: []
-:time: 0.03840189997572452
+:stdout:
+- 'test_fixtures.c:5:test_fixtures:INFO: Verifying that setUp() is executed.'
+- 'test_fixtures.c:15:test_fixtures:INFO: Running test...'
+- 'test_fixtures.c:17:test_fixtures:INFO: Ending test...'
+- 'test_fixtures.c:10:test_fixtures:INFO: Verifying that tearDown() is executed.'
+:time: 0.024484200053848326

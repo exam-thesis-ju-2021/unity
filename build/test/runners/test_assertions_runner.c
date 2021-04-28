@@ -10,6 +10,52 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_assertion_boolean_true(void);
+extern void test_assertion_boolean_false(void);
+extern void test_assert_null(void);
+extern void test_assert_not_null(void);
+extern void test_assertion_int32_equal(void);
+extern void test_assertion_uint32_equal(void);
+extern void test_assertion_hex32_equal(void);
+extern void test_assertion_float_equal(void);
+extern void test_assertion_double_equal(void);
+extern void test_assertion_float_infinity(void);
+extern void test_assertion_double_infinity(void);
+extern void test_assertion_float_not_infinity(void);
+extern void test_assertion_double_not_infinity(void);
+extern void test_assertion_float_negative_infinity(void);
+extern void test_assertion_double_negative_infinity(void);
+extern void test_assertion_float_not_negative_infinity(void);
+extern void test_assertion_double_not_negative_infinity(void);
+extern void test_assertion_float_nan(void);
+extern void test_assertion_double_nan(void);
+extern void test_assertion_float_not_nan(void);
+extern void test_assertion_double_not_nan(void);
+extern void test_assertion_float_determinate(void);
+extern void test_assertion_double_determinate(void);
+extern void test_assertion_float_non_determinate(void);
+extern void test_assertion_double_non_determinate(void);
+extern void test_assertion_masked_bits_match(void);
+extern void test_assertion_masked_bits_high(void);
+extern void test_assertion_masked_bits_low(void);
+extern void test_assertion_masked_bit_high(void);
+extern void test_assertion_masked_bit_low(void);
+extern void test_assertion_int32_range(void);
+extern void test_assertion_uint32_range(void);
+extern void test_assertion_float_range(void);
+extern void test_assertion_double_range(void);
+extern void test_assertion_hex32_range(void);
+extern void test_assertion_equal_ptr(void);
+extern void test_assertion_equal_string(void);
+extern void test_assertion_equal_memory_block(void);
+extern void test_assertion_equal_int32_array(void);
+extern void test_assertion_equal_uint32_array(void);
+extern void test_assertion_equal_hex32_array(void);
+extern void test_assertion_equal_float_array(void);
+extern void test_assertion_equal_double_array(void);
+extern void test_assertion_equal_ptr_array(void);
+extern void test_assertion_equal_string_array(void);
+extern void test_assertion_equal_memory_block_array(void);
 
 
 /*=======Mock Management=====*/
@@ -25,12 +71,6 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
 }
-
-/*=======Setup (stub)=====*/
-void setUp(void) {}
-
-/*=======Teardown (stub)=====*/
-void tearDown(void) {}
 
 /*=======Test Reset Options=====*/
 void resetTest(void);
@@ -48,10 +88,84 @@ void verifyTest(void)
   CMock_Verify();
 }
 
+/*=======Test Runner Used To Run Each Test=====*/
+static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE line_num)
+{
+    Unity.CurrentTestName = name;
+    Unity.CurrentTestLineNumber = line_num;
+#ifdef UNITY_USE_COMMAND_LINE_ARGS
+    if (!UnityTestMatches())
+        return;
+#endif
+    Unity.NumberOfTests++;
+    UNITY_CLR_DETAILS();
+    UNITY_EXEC_TIME_START();
+    CMock_Init();
+    if (TEST_PROTECT())
+    {
+        setUp();
+        func();
+    }
+    if (TEST_PROTECT())
+    {
+        tearDown();
+        CMock_Verify();
+    }
+    CMock_Destroy();
+    UNITY_EXEC_TIME_STOP();
+    UnityConcludeTest();
+}
+
 /*=======MAIN=====*/
 int main(void)
 {
   UnityBegin("test_assertions.c");
+  run_test(test_assertion_boolean_true, "test_assertion_boolean_true", 24);
+  run_test(test_assertion_boolean_false, "test_assertion_boolean_false", 30);
+  run_test(test_assert_null, "test_assert_null", 36);
+  run_test(test_assert_not_null, "test_assert_not_null", 42);
+  run_test(test_assertion_int32_equal, "test_assertion_int32_equal", 48);
+  run_test(test_assertion_uint32_equal, "test_assertion_uint32_equal", 55);
+  run_test(test_assertion_hex32_equal, "test_assertion_hex32_equal", 62);
+  run_test(test_assertion_float_equal, "test_assertion_float_equal", 69);
+  run_test(test_assertion_double_equal, "test_assertion_double_equal", 76);
+  run_test(test_assertion_float_infinity, "test_assertion_float_infinity", 83);
+  run_test(test_assertion_double_infinity, "test_assertion_double_infinity", 89);
+  run_test(test_assertion_float_not_infinity, "test_assertion_float_not_infinity", 95);
+  run_test(test_assertion_double_not_infinity, "test_assertion_double_not_infinity", 101);
+  run_test(test_assertion_float_negative_infinity, "test_assertion_float_negative_infinity", 107);
+  run_test(test_assertion_double_negative_infinity, "test_assertion_double_negative_infinity", 113);
+  run_test(test_assertion_float_not_negative_infinity, "test_assertion_float_not_negative_infinity", 119);
+  run_test(test_assertion_double_not_negative_infinity, "test_assertion_double_not_negative_infinity", 125);
+  run_test(test_assertion_float_nan, "test_assertion_float_nan", 131);
+  run_test(test_assertion_double_nan, "test_assertion_double_nan", 137);
+  run_test(test_assertion_float_not_nan, "test_assertion_float_not_nan", 143);
+  run_test(test_assertion_double_not_nan, "test_assertion_double_not_nan", 149);
+  run_test(test_assertion_float_determinate, "test_assertion_float_determinate", 156);
+  run_test(test_assertion_double_determinate, "test_assertion_double_determinate", 162);
+  run_test(test_assertion_float_non_determinate, "test_assertion_float_non_determinate", 168);
+  run_test(test_assertion_double_non_determinate, "test_assertion_double_non_determinate", 174);
+  run_test(test_assertion_masked_bits_match, "test_assertion_masked_bits_match", 180);
+  run_test(test_assertion_masked_bits_high, "test_assertion_masked_bits_high", 189);
+  run_test(test_assertion_masked_bits_low, "test_assertion_masked_bits_low", 197);
+  run_test(test_assertion_masked_bit_high, "test_assertion_masked_bit_high", 205);
+  run_test(test_assertion_masked_bit_low, "test_assertion_masked_bit_low", 213);
+  run_test(test_assertion_int32_range, "test_assertion_int32_range", 222);
+  run_test(test_assertion_uint32_range, "test_assertion_uint32_range", 231);
+  run_test(test_assertion_float_range, "test_assertion_float_range", 240);
+  run_test(test_assertion_double_range, "test_assertion_double_range", 249);
+  run_test(test_assertion_hex32_range, "test_assertion_hex32_range", 258);
+  run_test(test_assertion_equal_ptr, "test_assertion_equal_ptr", 267);
+  run_test(test_assertion_equal_string, "test_assertion_equal_string", 276);
+  run_test(test_assertion_equal_memory_block, "test_assertion_equal_memory_block", 284);
+  run_test(test_assertion_equal_int32_array, "test_assertion_equal_int32_array", 294);
+  run_test(test_assertion_equal_uint32_array, "test_assertion_equal_uint32_array", 304);
+  run_test(test_assertion_equal_hex32_array, "test_assertion_equal_hex32_array", 314);
+  run_test(test_assertion_equal_float_array, "test_assertion_equal_float_array", 324);
+  run_test(test_assertion_equal_double_array, "test_assertion_equal_double_array", 334);
+  run_test(test_assertion_equal_ptr_array, "test_assertion_equal_ptr_array", 344);
+  run_test(test_assertion_equal_string_array, "test_assertion_equal_string_array", 354);
+  run_test(test_assertion_equal_memory_block_array, "test_assertion_equal_memory_block_array", 362);
 
   return UnityEnd();
 }

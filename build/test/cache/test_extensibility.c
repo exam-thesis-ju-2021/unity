@@ -1,5 +1,5 @@
-#include "src/peripheral.h"
-#include "src/hardware.h"
+#include "src/library/peripheral.h"
+#include "src/library/hardware.h"
 #include "C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/ceedling-0.31.0/vendor/unity/src/unity.h"
 
 
@@ -13,7 +13,7 @@ void setUp(void)
 
 {
 
- hw_init();
+ hardware_init();
 
 }
 
@@ -23,7 +23,7 @@ void tearDown(void)
 
 {
 
- hw_reset();
+ hardware_reset();
 
 }
 
@@ -37,8 +37,6 @@ void test_extensibility(void)
 
  digital_write(pin, HIGH);
 
-
-
  ASSERT_PIN_STATE(HIGH, 4);
 
 }
@@ -49,7 +47,7 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
 {
 
- UnityMessage(("Executing customized assertion..."), 28);
+ UnityMessage(("Executing customized assertion..."), 27);
 
 
 
@@ -61,9 +59,9 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
  {
 
-  sprintf(output, "assert '%s' passed.", __func__);
+  sprintf(output, "Custom assertion '%s' passed.", __func__);
 
-  do { UnityMessage((output), 35); longjmp(Unity.AbortFrame, 1); } while(0);
+  do { UnityMessage((output), 34); longjmp(Unity.AbortFrame, 1); } while(0);
 
  }
 
@@ -71,9 +69,9 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
  {
 
-  sprintf(output, "assert '%s' failed.", __func__);
+  sprintf(output, "Custom assertion '%s' failed.", __func__);
 
-  UnityFail( ((output)), (UNITY_UINT)(40));
+  UnityFail( ((output)), (UNITY_UINT)(39));
 
  }
 

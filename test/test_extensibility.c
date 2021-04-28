@@ -7,12 +7,12 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio);
 
 void setUp(void) 
 {
-	hw_init();
+	hardware_init();
 }
 
 void tearDown(void)
 {
-	hw_reset();
+	hardware_reset();
 }
 
 void test_extensibility(void)
@@ -25,7 +25,7 @@ void test_extensibility(void)
 void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 {
 	TEST_MESSAGE("Executing customized assertion...");
-
+	
 	char* output = (char*)malloc(128 * sizeof(char));
 	
 	if (digital_read(gpio) == expected) 

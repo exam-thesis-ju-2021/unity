@@ -1,4 +1,5 @@
 #include "unity.h"
+#include <stdbool.h>
 
 void setUp(void)
 {
@@ -13,6 +14,6 @@ void tearDown(void)
 void test_fixtures(void)
 {
 	TEST_MESSAGE("Running test...");
-	TEST_ASSERT_EQUAL_UINT(0, 0);
+	TEST_ASSERT_EQUAL(true, true);
 	TEST_MESSAGE("Ending test...");
 }

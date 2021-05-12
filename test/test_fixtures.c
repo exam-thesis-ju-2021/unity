@@ -13,7 +13,6 @@ void tearDown(void)
 
 void test_fixtures(void)
 {
-	TEST_MESSAGE("Running test...");
-	TEST_ASSERT_EQUAL(true, true);
-	TEST_MESSAGE("Ending test...");
+	TEST_ASSERT(true == true);
+	TEST_MESSAGE("Verifying that test_fixtures() has been run in between setup() and tearDown().");
 }

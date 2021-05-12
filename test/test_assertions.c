@@ -48,7 +48,7 @@ void test_assert_not_null(void)
 void test_assertion_int32_equal(void)
 {
 	int32_t exp = 128;
-	TEST_ASSERT_EQUAL_INT32(exp, (int32_t)divide_by_half((uint32_t)multiply_by_two(exp)));
+	TEST_ASSERT_EQUAL_INT32(exp, (int32_t)divide_by_half((int32_t)multiply_by_two(exp)));
 	TEST_ASSERT_EQUAL_INT32(exp, (int32_t)square_root((int32_t)power_of_two(exp)));
 }
 

@@ -75,7 +75,7 @@ void test_assertion_float_equal(void)
 
 void test_assertion_double_equal(void)
 {
-	double_t exp = 128.000f;
+	double_t exp = 128.000;
 	TEST_ASSERT_EQUAL_DOUBLE(exp, (double_t)divide_by_half((double_t)multiply_by_two(exp)));
 	TEST_ASSERT_EQUAL_DOUBLE(exp, (double_t)square_root((double_t)power_of_two(exp)));
 }
@@ -130,13 +130,15 @@ void test_assertion_double_not_negative_infinity(void)
 
 void test_assertion_float_nan(void)
 {
-	float_t act = 0.0f / 0.0f;
+	float_t divider = 0.0f;
+	float_t act = 0.0f / divider;
 	TEST_ASSERT_FLOAT_IS_NAN(act);
 }
 
 void test_assertion_double_nan(void)
 {
-	double_t act = 0.0 / 0.0;
+	double_t divider = 0.0;
+	double_t act = 0.0 / divider;
 	TEST_ASSERT_DOUBLE_IS_NAN(act);
 }
 
@@ -181,39 +183,51 @@ void test_assertion_masked_bits_match(void)
 {
 	int32_t mask = 0b00001111;
 	int32_t exp = 0b10101111;
-	int32_t act = 0b00001111;
+	int32_t act = 0b01011111;
 
-	TEST_ASSERT_BITS(mask, act, mask & act);
+	TEST_ASSERT_BITS(mask, exp, act);
 }
 
 void test_assertion_masked_bits_high(void)
 {
-	int32_t mask = 0b10000001;
-	int32_t act = 0b10101111;
+	int32_t mask = 0b00001111;
+	int32_t exp = 0b10101111; /* Not used in Unity */
+	int32_t act = 0b01011111;
 
 	TEST_ASSERT_BITS_HIGH(mask, act);
 }
 
 void test_assertion_masked_bits_low(void)
 {
-	int32_t mask = 0b01010000;
-	int32_t act = 0b10101111;
+	int32_t mask = 0b00001111;
+	int32_t exp = 0b10100000; /* Not used in Unity */
+	int32_t act = 0b10100000;
 
 	TEST_ASSERT_BITS_LOW(mask, act);
 }
 
 void test_assertion_masked_bit_high(void)
 {
-	int32_t bit = 0;
-	int32_t act = 0b10101111;
+	int32_t mask = 0b10000000;	/* Not used in Unity */
+
+	int32_t bit = 7;
+	int32_t exp = 0b00000000;	/* Not used in Unity */
+	exp ^= 1UL << bit;			/* Not used in Unity */
+
+	int32_t act = 0b10000000;
 
 	TEST_ASSERT_BIT_HIGH(bit, act);
 }
 
 void test_assertion_masked_bit_low(void)
 {
-	int32_t bit = 4;
-	int32_t act = 0b10101111;
+	int32_t mask = 0b10000000;	/* Not used in Unity */
+
+	int32_t bit = 7;
+	int32_t exp = 0b11111111;	/* Not used in Unity */
+	exp &= ~(1UL << bit);		/* Not used in Unity */
+
+	int32_t act = 0b01111111;
 
 	TEST_ASSERT_BIT_LOW(bit, act);
 }
@@ -248,8 +262,8 @@ void test_assertion_float_range(void)
 
 void test_assertion_double_range(void)
 {
-	double_t delta = 128.000f;
-	double_t exp = 256.000f;
+	double_t delta = 128.000;
+	double_t exp = 256.000;
 	double_t act = exp + delta;
 
 	TEST_ASSERT_DOUBLE_WITHIN(delta, exp, act);
@@ -268,7 +282,7 @@ void test_assertion_equal_ptr(void)
 {
 	int32_t value = 128;
 	int32_t *exp = &value;
-	int32_t *act = &(*exp);
+	int32_t *act = &*exp;
 
 	TEST_ASSERT_EQUAL_PTR(exp, act);
 }
@@ -283,11 +297,16 @@ void test_assertion_equal_string(void)
 
 void test_assertion_equal_memory_block(void)
 {
-	int32_t len = 32;
-	int32_t *exp = malloc(len * sizeof(int));
-	int32_t *act = &(*exp);
+	const int32_t LENGTH = 10;
+	int32_t* exp = (int32_t*)malloc(LENGTH * sizeof(int));
 
-	TEST_ASSERT_EQUAL_MEMORY(exp, act, len);
+	if (!exp) {
+		TEST_FAIL_MESSAGE("Failed to allocate memory for 'int32_t* exp'");
+		return;
+	}
+
+	int32_t *act = &*exp;
+	TEST_ASSERT_EQUAL_MEMORY(exp, act, LENGTH);
 	free(act);
 }
 
@@ -308,7 +327,7 @@ void test_assertion_equal_uint32_array(void)
 	uint32_t exp[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 };
 	uint32_t act[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 };
 
-	TEST_ASSERT_EQUAL_INT32_ARRAY(exp, act, LENGTH);
+	TEST_ASSERT_EQUAL_UINT32_ARRAY(exp, act, LENGTH);
 }
 
 void test_assertion_equal_hex32_array(void)
@@ -353,10 +372,12 @@ void test_assertion_equal_ptr_array(void)
 
 void test_assertion_equal_string_array(void)
 {
+	const int32_t LENGTH = 3;
+
 	char *exp[] = { "assert1", "assert2", "assert3" };
 	char *act[] = { "assert1", "assert2", "assert3" };
 
-	TEST_ASSERT_EQUAL_STRING_ARRAY(&exp, act, 3);
+	TEST_ASSERT_EQUAL_STRING_ARRAY(&exp, act, LENGTH);
 }
 
 void test_assertion_equal_memory_block_array(void)
@@ -364,10 +385,14 @@ void test_assertion_equal_memory_block_array(void)
 	const int32_t LENGTH = 32;
 	const int32_t BLOCKS = 4;
 
-	int32_t* exp = malloc(LENGTH * BLOCKS * sizeof(int));
-	int32_t* act = &(*exp);
+	int32_t* exp = (int32_t*)malloc(LENGTH * BLOCKS * sizeof(int32_t));
 
+	if (!exp) {
+		TEST_FAIL_MESSAGE("Failed to allocate memory for 'int32_t* exp'");
+		return;
+	}
+
+	int32_t* act = &*exp;
 	TEST_ASSERT_EQUAL_MEMORY_ARRAY(exp, act, LENGTH, BLOCKS);
-
 	free(act);
 }

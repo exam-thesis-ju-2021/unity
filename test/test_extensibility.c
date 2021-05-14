@@ -24,10 +24,14 @@ void test_extensibility(void)
 
 void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 {
-	TEST_MESSAGE("Executing customized assertion...");
+	TEST_MESSAGE("Executing extended assertion...");
 	
 	char* output = (char*)malloc(128 * sizeof(char));
-	
+	if (!output) {
+		TEST_FAIL_MESSAGE("Failed to allocate memory for 'char* output'");
+		return;
+	}
+
 	if (digital_read(gpio) == expected) 
 	{
 		sprintf(output, "Custom assertion '%s' passed.", __func__);

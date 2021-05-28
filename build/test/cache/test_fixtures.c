@@ -5,7 +5,7 @@ void setUp(void)
 
 {
 
- UnityMessage(("Verifying that setUp() is executed."), 5);
+ UnityMessage(("Verifying that setUp() is executed."), 6);
 
 }
 
@@ -15,24 +15,26 @@ void tearDown(void)
 
 {
 
- UnityMessage(("Verifying that tearDown() is executed."), 10);
+ UnityMessage(("Verifying that tearDown() is executed."), 11);
 
 }
 
 
 
-void test_fixtures(void)
+void test_verification(void)
 
 {
 
- UnityMessage(("Running test..."), 15);
+ do {if ((
 
- UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((0)), (
+1 
 
-((void *)0)
+== 
 
-), (UNITY_UINT)(16), UNITY_DISPLAY_STYLE_UINT);
+1
 
- UnityMessage(("Ending test..."), 17);
+)) {} else {UnityFail( ((" Expression Evaluated To FALSE")), (UNITY_UINT)((UNITY_UINT)(16)));}} while(0);
+
+ UnityMessage(("Verifying that test_fixtures() has been run in between setup() and tearDown()."), 17);
 
 }

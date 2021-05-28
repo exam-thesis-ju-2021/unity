@@ -42,6 +42,9 @@ void setUp(void)
 	square_root_StubWithCallback(&sqr_stub);
 	/* - - - */
 
+	//init_CMockExpect();
+	//reset_CMockExpect();
+
 	init();
 }
 

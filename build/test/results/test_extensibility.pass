@@ -15,7 +15,7 @@
   :failed: 0
   :ignored: 0
 :stdout:
-- 'test_extensibility.c:27:test_extensibility:INFO: Executing customized assertion...'
-- 'test_extensibility.c:34:test_extensibility:INFO: Custom assertion ''ASSERT_PIN_STATE''
+- 'test_extensibility.c:27:test_extensibility:INFO: Executing extended assertion...'
+- 'test_extensibility.c:38:test_extensibility:INFO: Custom assertion ''ASSERT_PIN_STATE''
   passed.'
-:time: 0.02340070006903261
+:time: 0.01627239992376417

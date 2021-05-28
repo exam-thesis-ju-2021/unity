@@ -23,3 +23,21 @@ src/library/peripherals/power_of_two.c:
 src/library/peripherals/square_root.c:
 - TEST
 - UNITY_INCLUDE_CONFIG_H
+build/test/mocks/mock_hardware.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+build/test/mocks/mock_library/hardware.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+build/test/mocks/mock_peripheral.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+build/test/mocks/mock_peripherals.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+build/test/mocks/mock_module_a.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H
+external/unity_memory.c:
+- TEST
+- UNITY_INCLUDE_CONFIG_H

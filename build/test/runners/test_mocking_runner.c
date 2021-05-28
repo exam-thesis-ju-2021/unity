@@ -2,6 +2,8 @@
 
 /*=======Automagically Detected Files To Include=====*/
 #include "unity.h"
+#include "cmock.h"
+#include "mock_module_a.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -10,7 +12,11 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_mocking(void);
+extern void test_mock_assertion_int32_equal(void);
+extern void test_mock_assertion_uint32_equal(void);
+extern void test_mock_assertion_hex32_equal(void);
+extern void test_mock_assertion_float_equal(void);
+extern void test_mock_assertion_double_equal(void);
 
 
 /*=======Mock Management=====*/
@@ -19,12 +25,15 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
+  mock_module_a_Init();
 }
 static void CMock_Verify(void)
 {
+  mock_module_a_Verify();
 }
 static void CMock_Destroy(void)
 {
+  mock_module_a_Destroy();
 }
 
 /*=======Test Reset Options=====*/
@@ -75,7 +84,12 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_mocking.c");
-  run_test(test_mocking, "test_mocking", 13);
+  run_test(test_mock_assertion_int32_equal, "test_mock_assertion_int32_equal", 58);
+  run_test(test_mock_assertion_uint32_equal, "test_mock_assertion_uint32_equal", 65);
+  run_test(test_mock_assertion_hex32_equal, "test_mock_assertion_hex32_equal", 72);
+  run_test(test_mock_assertion_float_equal, "test_mock_assertion_float_equal", 79);
+  run_test(test_mock_assertion_double_equal, "test_mock_assertion_double_equal", 86);
 
+  CMock_Guts_MemFreeFinal();
   return UnityEnd();
 }

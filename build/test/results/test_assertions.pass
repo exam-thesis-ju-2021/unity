@@ -76,115 +76,115 @@
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_double_nan
-  :line: 137
+  :line: 138
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_float_not_nan
-  :line: 143
+  :line: 145
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_double_not_nan
-  :line: 149
+  :line: 151
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_float_determinate
-  :line: 156
+  :line: 158
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_double_determinate
-  :line: 162
+  :line: 164
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_float_non_determinate
-  :line: 168
+  :line: 170
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_double_non_determinate
-  :line: 174
+  :line: 176
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_masked_bits_match
-  :line: 180
+  :line: 182
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_masked_bits_high
-  :line: 189
+  :line: 191
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_masked_bits_low
-  :line: 197
+  :line: 200
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_masked_bit_high
-  :line: 205
+  :line: 209
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_masked_bit_low
-  :line: 213
-  :message: ''
-  :unity_test_time: 0
-- :test: test_assertion_int32_range
   :line: 222
   :message: ''
   :unity_test_time: 0
+- :test: test_assertion_int32_range
+  :line: 236
+  :message: ''
+  :unity_test_time: 0
 - :test: test_assertion_uint32_range
-  :line: 231
+  :line: 245
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_float_range
-  :line: 240
+  :line: 254
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_double_range
-  :line: 249
+  :line: 263
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_hex32_range
-  :line: 258
+  :line: 272
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_ptr
-  :line: 267
+  :line: 281
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_string
-  :line: 276
+  :line: 290
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_memory_block
-  :line: 284
+  :line: 298
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_int32_array
-  :line: 294
+  :line: 313
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_uint32_array
-  :line: 304
+  :line: 323
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_hex32_array
-  :line: 314
+  :line: 333
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_float_array
-  :line: 324
+  :line: 343
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_double_array
-  :line: 334
+  :line: 353
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_ptr_array
-  :line: 344
+  :line: 363
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_string_array
-  :line: 354
+  :line: 373
   :message: ''
   :unity_test_time: 0
 - :test: test_assertion_equal_memory_block_array
-  :line: 362
+  :line: 383
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -195,4 +195,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.09467419993598014
+:time: 0.04899199993815273

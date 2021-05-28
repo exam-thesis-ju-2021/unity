@@ -10,7 +10,18 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_memory_leaks(void);
+extern void test_realloc_smaller_is_unchanged(void);
+extern void test_realloc_same_is_unchanged(void);
+extern void test_realloc_larger_is_needed(void);
+extern void test_realloc_nullpointer_is_like_malloc(void);
+extern void test_realloc_size_zero_frees_mem_and_return_null_pointer(void);
+extern void test_calloc_fills_with_zero(void);
+extern void test_free_null_safety(void);
+extern void test_detects_leak(void);
+extern void test_buffer_overrun_found_during_free(void);
+extern void test_buffer_overrun_found_during_realloc(void);
+extern void test_buffer_guard_write_found_during_free(void);
+extern void test_buffer_guard_write_found_during_realloc(void);
 
 
 /*=======Mock Management=====*/
@@ -75,7 +86,18 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_memory_leaks.c");
-  run_test(test_memory_leaks, "test_memory_leaks", 14);
+  run_test(test_realloc_smaller_is_unchanged, "test_realloc_smaller_is_unchanged", 23);
+  run_test(test_realloc_same_is_unchanged, "test_realloc_same_is_unchanged", 33);
+  run_test(test_realloc_larger_is_needed, "test_realloc_larger_is_needed", 43);
+  run_test(test_realloc_nullpointer_is_like_malloc, "test_realloc_nullpointer_is_like_malloc", 59);
+  run_test(test_realloc_size_zero_frees_mem_and_return_null_pointer, "test_realloc_size_zero_frees_mem_and_return_null_pointer", 66);
+  run_test(test_calloc_fills_with_zero, "test_calloc_fills_with_zero", 72);
+  run_test(test_free_null_safety, "test_free_null_safety", 83);
+  run_test(test_detects_leak, "test_detects_leak", 88);
+  run_test(test_buffer_overrun_found_during_free, "test_buffer_overrun_found_during_free", 96);
+  run_test(test_buffer_overrun_found_during_realloc, "test_buffer_overrun_found_during_realloc", 105);
+  run_test(test_buffer_guard_write_found_during_free, "test_buffer_guard_write_found_during_free", 114);
+  run_test(test_buffer_guard_write_found_during_realloc, "test_buffer_guard_write_found_during_realloc", 124);
 
   return UnityEnd();
 }

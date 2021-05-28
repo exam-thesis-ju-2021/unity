@@ -3,8 +3,8 @@
   :path: test
   :file: test_fixtures.c
 :successes:
-- :test: test_fixtures
-  :line: 13
+- :test: test_verification
+  :line: 14
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -15,8 +15,8 @@
   :failed: 0
   :ignored: 0
 :stdout:
-- 'test_fixtures.c:5:test_fixtures:INFO: Verifying that setUp() is executed.'
-- 'test_fixtures.c:15:test_fixtures:INFO: Running test...'
-- 'test_fixtures.c:17:test_fixtures:INFO: Ending test...'
-- 'test_fixtures.c:10:test_fixtures:INFO: Verifying that tearDown() is executed.'
-:time: 0.024484200053848326
+- 'test_fixtures.c:6:test_verification:INFO: Verifying that setUp() is executed.'
+- 'test_fixtures.c:17:test_verification:INFO: Verifying that test_fixtures() has been
+  run in between setup() and tearDown().'
+- 'test_fixtures.c:11:test_verification:INFO: Verifying that tearDown() is executed.'
+:time: 0.01572269992902875

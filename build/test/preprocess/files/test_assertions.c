@@ -125,7 +125,7 @@ void test_assertion_int32_equal(void)
 
  int32_t exp = 128;
 
- UnityAssertEqualNumber((UNITY_INT)(UNITY_INT32)((exp)), (UNITY_INT)(UNITY_INT32)(((int32_t)divide_by_half((uint32_t)multiply_by_two(exp)))), (
+ UnityAssertEqualNumber((UNITY_INT)(UNITY_INT32)((exp)), (UNITY_INT)(UNITY_INT32)(((int32_t)divide_by_half((int32_t)multiply_by_two(exp)))), (
 
 ((void *)0)
 
@@ -211,7 +211,7 @@ void test_assertion_double_equal(void)
 
 {
 
- double_t exp = 128.000f;
+ double_t exp = 128.000;
 
  UnityAssertDoublesWithin((UNITY_DOUBLE)((UNITY_DOUBLE)((exp)) * (UNITY_DOUBLE)0.001f), (UNITY_DOUBLE)((UNITY_DOUBLE)((exp))), (UNITY_DOUBLE)((UNITY_DOUBLE)(((double_t)divide_by_half((double_t)multiply_by_two(exp))))), ((
 
@@ -377,13 +377,15 @@ void test_assertion_float_nan(void)
 
 {
 
- float_t act = 0.0f / 0.0f;
+ float_t divider = 0.0f;
+
+ float_t act = 0.0f / divider;
 
  UnityAssertFloatSpecial((UNITY_FLOAT)((act)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(134), UNITY_FLOAT_IS_NAN);
+), (UNITY_UINT)(135), UNITY_FLOAT_IS_NAN);
 
 }
 
@@ -393,13 +395,15 @@ void test_assertion_double_nan(void)
 
 {
 
- double_t act = 0.0 / 0.0;
+ double_t divider = 0.0;
+
+ double_t act = 0.0 / divider;
 
  UnityAssertDoubleSpecial((UNITY_DOUBLE)((act)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(140), UNITY_FLOAT_IS_NAN);
+), (UNITY_UINT)(142), UNITY_FLOAT_IS_NAN);
 
 }
 
@@ -415,7 +419,7 @@ void test_assertion_float_not_nan(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(146), UNITY_FLOAT_IS_NOT_NAN);
+), (UNITY_UINT)(148), UNITY_FLOAT_IS_NOT_NAN);
 
 }
 
@@ -431,7 +435,7 @@ void test_assertion_double_not_nan(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(152), UNITY_FLOAT_IS_NOT_NAN);
+), (UNITY_UINT)(154), UNITY_FLOAT_IS_NOT_NAN);
 
 }
 
@@ -449,7 +453,7 @@ void test_assertion_float_determinate(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(159), UNITY_FLOAT_IS_DET);
+), (UNITY_UINT)(161), UNITY_FLOAT_IS_DET);
 
 }
 
@@ -465,7 +469,7 @@ void test_assertion_double_determinate(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(165), UNITY_FLOAT_IS_DET);
+), (UNITY_UINT)(167), UNITY_FLOAT_IS_DET);
 
 }
 
@@ -485,7 +489,7 @@ void test_assertion_float_non_determinate(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(171), UNITY_FLOAT_IS_NOT_DET);
+), (UNITY_UINT)(173), UNITY_FLOAT_IS_NOT_DET);
 
 }
 
@@ -505,7 +509,7 @@ void test_assertion_double_non_determinate(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(177), UNITY_FLOAT_IS_NOT_DET);
+), (UNITY_UINT)(179), UNITY_FLOAT_IS_NOT_DET);
 
 }
 
@@ -519,15 +523,15 @@ void test_assertion_masked_bits_match(void)
 
  int32_t exp = 0b10101111;
 
- int32_t act = 0b00001111;
+ int32_t act = 0b01011111;
 
 
 
- UnityAssertBits((UNITY_INT)((mask)), (UNITY_INT)((act)), (UNITY_INT)((mask & act)), (
+ UnityAssertBits((UNITY_INT)((mask)), (UNITY_INT)((exp)), (UNITY_INT)((act)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(186));
+), (UNITY_UINT)(188));
 
 }
 
@@ -537,9 +541,11 @@ void test_assertion_masked_bits_high(void)
 
 {
 
- int32_t mask = 0b10000001;
+ int32_t mask = 0b00001111;
 
- int32_t act = 0b10101111;
+ int32_t exp = 0b10101111;
+
+ int32_t act = 0b01011111;
 
 
 
@@ -547,7 +553,7 @@ void test_assertion_masked_bits_high(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(194));
+), (UNITY_UINT)(197));
 
 }
 
@@ -557,9 +563,11 @@ void test_assertion_masked_bits_low(void)
 
 {
 
- int32_t mask = 0b01010000;
+ int32_t mask = 0b00001111;
 
- int32_t act = 0b10101111;
+ int32_t exp = 0b10100000;
+
+ int32_t act = 0b10100000;
 
 
 
@@ -567,7 +575,7 @@ void test_assertion_masked_bits_low(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(202));
+), (UNITY_UINT)(206));
 
 }
 
@@ -577,9 +585,19 @@ void test_assertion_masked_bit_high(void)
 
 {
 
- int32_t bit = 0;
+ int32_t mask = 0b10000000;
 
- int32_t act = 0b10101111;
+
+
+ int32_t bit = 7;
+
+ int32_t exp = 0b00000000;
+
+ exp ^= 1UL << bit;
+
+
+
+ int32_t act = 0b10000000;
 
 
 
@@ -587,7 +605,7 @@ void test_assertion_masked_bit_high(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(210));
+), (UNITY_UINT)(219));
 
 }
 
@@ -597,9 +615,19 @@ void test_assertion_masked_bit_low(void)
 
 {
 
- int32_t bit = 4;
+ int32_t mask = 0b10000000;
 
- int32_t act = 0b10101111;
+
+
+ int32_t bit = 7;
+
+ int32_t exp = 0b11111111;
+
+ exp &= ~(1UL << bit);
+
+
+
+ int32_t act = 0b01111111;
 
 
 
@@ -607,7 +635,7 @@ void test_assertion_masked_bit_low(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(218));
+), (UNITY_UINT)(232));
 
 }
 
@@ -631,7 +659,7 @@ void test_assertion_int32_range(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(228), UNITY_DISPLAY_STYLE_UINT32);
+), (UNITY_UINT)(242), UNITY_DISPLAY_STYLE_UINT32);
 
 }
 
@@ -653,7 +681,7 @@ void test_assertion_uint32_range(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(237), UNITY_DISPLAY_STYLE_UINT32);
+), (UNITY_UINT)(251), UNITY_DISPLAY_STYLE_UINT32);
 
 }
 
@@ -675,7 +703,7 @@ void test_assertion_float_range(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(246));
+), (UNITY_UINT)(260));
 
 }
 
@@ -685,9 +713,9 @@ void test_assertion_double_range(void)
 
 {
 
- double_t delta = 128.000f;
+ double_t delta = 128.000;
 
- double_t exp = 256.000f;
+ double_t exp = 256.000;
 
  double_t act = exp + delta;
 
@@ -697,7 +725,7 @@ void test_assertion_double_range(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(255));
+), (UNITY_UINT)(269));
 
 }
 
@@ -719,7 +747,7 @@ void test_assertion_hex32_range(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(264), UNITY_DISPLAY_STYLE_HEX32);
+), (UNITY_UINT)(278), UNITY_DISPLAY_STYLE_HEX32);
 
 }
 
@@ -733,7 +761,7 @@ void test_assertion_equal_ptr(void)
 
  int32_t *exp = &value;
 
- int32_t *act = &(*exp);
+ int32_t *act = &*exp;
 
 
 
@@ -741,7 +769,7 @@ void test_assertion_equal_ptr(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(273), UNITY_DISPLAY_STYLE_HEX32);
+), (UNITY_UINT)(287), UNITY_DISPLAY_STYLE_HEX32);
 
 }
 
@@ -761,7 +789,7 @@ void test_assertion_equal_string(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(281));
+), (UNITY_UINT)(295));
 
 }
 
@@ -771,19 +799,29 @@ void test_assertion_equal_memory_block(void)
 
 {
 
- int32_t len = 32;
+ const int32_t LENGTH = 10;
 
- int32_t *exp = malloc(len * sizeof(int));
-
- int32_t *act = &(*exp);
+ int32_t* exp = (int32_t*)malloc(LENGTH * sizeof(int));
 
 
 
- UnityAssertEqualMemory(( const void*)((exp)), ( const void*)((act)), (UNITY_UINT32)((len)), 1, (
+ if (!exp) {
+
+  UnityFail( (("Failed to allocate memory for 'int32_t* exp'")), (UNITY_UINT)(304));
+
+  return;
+
+ }
+
+
+
+ int32_t *act = &*exp;
+
+ UnityAssertEqualMemory(( const void*)((exp)), ( const void*)((act)), (UNITY_UINT32)((LENGTH)), 1, (
 
 ((void *)0)
 
-), (UNITY_UINT)(290), UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(309), UNITY_ARRAY_TO_ARRAY);
 
  free(act);
 
@@ -809,7 +847,7 @@ void test_assertion_equal_int32_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(301), UNITY_DISPLAY_STYLE_INT32, UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(320), UNITY_DISPLAY_STYLE_INT32, UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -833,7 +871,7 @@ void test_assertion_equal_uint32_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(311), UNITY_DISPLAY_STYLE_INT32, UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(330), UNITY_DISPLAY_STYLE_UINT32, UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -857,7 +895,7 @@ void test_assertion_equal_hex32_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(321), UNITY_DISPLAY_STYLE_HEX32, UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(340), UNITY_DISPLAY_STYLE_HEX32, UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -881,7 +919,7 @@ void test_assertion_equal_float_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(331), UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(350), UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -905,7 +943,7 @@ void test_assertion_equal_double_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(341), UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(360), UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -929,7 +967,7 @@ void test_assertion_equal_ptr_array(void)
 
 ((void *)0)
 
-), (UNITY_UINT)(351), UNITY_DISPLAY_STYLE_HEX32, UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(370), UNITY_DISPLAY_STYLE_HEX32, UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -939,17 +977,21 @@ void test_assertion_equal_string_array(void)
 
 {
 
+ const int32_t LENGTH = 3;
+
+
+
  char *exp[] = { "assert1", "assert2", "assert3" };
 
  char *act[] = { "assert1", "assert2", "assert3" };
 
 
 
- UnityAssertEqualStringArray(( const void*)((&exp)), (const char**)((act)), (UNITY_UINT32)((3)), (
+ UnityAssertEqualStringArray(( const void*)((&exp)), (const char**)((act)), (UNITY_UINT32)((LENGTH)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(359), UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(380), UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -965,19 +1007,27 @@ void test_assertion_equal_memory_block_array(void)
 
 
 
- int32_t* exp = malloc(LENGTH * BLOCKS * sizeof(int));
-
- int32_t* act = &(*exp);
+ int32_t* exp = (int32_t*)malloc(LENGTH * BLOCKS * sizeof(int32_t));
 
 
+
+ if (!exp) {
+
+  UnityFail( (("Failed to allocate memory for 'int32_t* exp'")), (UNITY_UINT)(391));
+
+  return;
+
+ }
+
+
+
+ int32_t* act = &*exp;
 
  UnityAssertEqualMemory(( const void*)((exp)), ( const void*)((act)), (UNITY_UINT32)((LENGTH)), (UNITY_UINT32)((BLOCKS)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(370), UNITY_ARRAY_TO_ARRAY);
-
-
+), (UNITY_UINT)(396), UNITY_ARRAY_TO_ARRAY);
 
  free(act);
 

@@ -3,16 +3,32 @@
   :path: test
   :file: test_mocking.c
 :successes:
-- :test: test_mocking
-  :line: 13
+- :test: test_mock_assertion_int32_equal
+  :line: 58
+  :message: ''
+  :unity_test_time: 0
+- :test: test_mock_assertion_uint32_equal
+  :line: 65
+  :message: ''
+  :unity_test_time: 0
+- :test: test_mock_assertion_hex32_equal
+  :line: 72
+  :message: ''
+  :unity_test_time: 0
+- :test: test_mock_assertion_float_equal
+  :line: 79
+  :message: ''
+  :unity_test_time: 0
+- :test: test_mock_assertion_double_equal
+  :line: 86
   :message: ''
   :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 5
+  :passed: 5
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.02650589996483177
+:time: 0.0397123999428004

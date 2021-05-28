@@ -1,0 +1,62 @@
+---
+:source:
+  :path: test
+  :file: test_memory_leaks.c
+:successes:
+- :test: test_realloc_smaller_is_unchanged
+  :line: 23
+  :message: ''
+  :unity_test_time: 0
+- :test: test_realloc_same_is_unchanged
+  :line: 33
+  :message: ''
+  :unity_test_time: 0
+- :test: test_realloc_larger_is_needed
+  :line: 43
+  :message: ''
+  :unity_test_time: 0
+- :test: test_realloc_nullpointer_is_like_malloc
+  :line: 59
+  :message: ''
+  :unity_test_time: 0
+- :test: test_realloc_size_zero_frees_mem_and_return_null_pointer
+  :line: 66
+  :message: ''
+  :unity_test_time: 0
+- :test: test_calloc_fills_with_zero
+  :line: 72
+  :message: ''
+  :unity_test_time: 0
+- :test: test_free_null_safety
+  :line: 83
+  :message: ''
+  :unity_test_time: 0
+:failures:
+- :test: test_detects_leak
+  :line: 88
+  :message: This test leaks!
+  :unity_test_time: 0
+- :test: test_buffer_overrun_found_during_free
+  :line: 96
+  :message: Buffer overrun detected during free()
+  :unity_test_time: 0
+- :test: test_buffer_overrun_found_during_realloc
+  :line: 105
+  :message: Buffer overrun detected during realloc()
+  :unity_test_time: 0
+- :test: test_buffer_guard_write_found_during_free
+  :line: 114
+  :message: Buffer overrun detected during free()
+  :unity_test_time: 0
+- :test: test_buffer_guard_write_found_during_realloc
+  :line: 124
+  :message: Buffer overrun detected during realloc()
+  :unity_test_time: 0
+:ignores: []
+:counts:
+  :total: 12
+  :passed: 7
+  :failed: 5
+  :ignored: 0
+:stdout: []
+:time: 0.014966899994760752

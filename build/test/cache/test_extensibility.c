@@ -47,11 +47,19 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
 {
 
- UnityMessage(("Executing customized assertion..."), 27);
+ UnityMessage(("Executing extended assertion..."), 27);
 
 
 
  char* output = (char*)malloc(128 * sizeof(char));
+
+ if (!output) {
+
+  UnityFail( (("Failed to allocate memory for 'char* output'")), (UNITY_UINT)(31));
+
+  return;
+
+ }
 
 
 
@@ -61,7 +69,7 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
   sprintf(output, "Custom assertion '%s' passed.", __func__);
 
-  do { UnityMessage((output), 34); longjmp(Unity.AbortFrame, 1); } while(0);
+  do { UnityMessage((output), 38); longjmp(Unity.AbortFrame, 1); } while(0);
 
  }
 
@@ -71,7 +79,7 @@ void ASSERT_PIN_STATE(PinState expected, uint16_t gpio)
 
   sprintf(output, "Custom assertion '%s' failed.", __func__);
 
-  UnityFail( ((output)), (UNITY_UINT)(39));
+  UnityFail( ((output)), (UNITY_UINT)(43));
 
  }
 

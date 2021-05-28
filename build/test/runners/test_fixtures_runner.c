@@ -10,7 +10,7 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_fixtures(void);
+extern void test_verification(void);
 
 
 /*=======Mock Management=====*/
@@ -75,7 +75,7 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_fixtures.c");
-  run_test(test_fixtures, "test_fixtures", 13);
+  run_test(test_verification, "test_verification", 14);
 
   return UnityEnd();
 }
